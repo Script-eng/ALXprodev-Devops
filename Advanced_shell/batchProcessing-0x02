@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # A list of Pokémon to fetch
-pokemons=("Bulbasaur" "Ivysaur" "Venusaur" "Charmander" "Charmeleon")
+pokemons=("bulbasaur" "ivysaur" "venusaur" "charmander" "charmeleon")
 
 # The directory to save the data in
 output_dir="pokemon_data"
