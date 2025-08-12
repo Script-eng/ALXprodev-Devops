@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# A list of Pokémon to fetch
+pokemons=("Bulbasaur" "Ivysaur" "Venusaur" "Charmander" "Charmeleon")
+
+# The directory to save the data in
+output_dir="pokemon_data"
+
+# Create the directory if it doesn't exist
+mkdir -p "$output_dir"
+
+# Loop through each Pokémon in the list
+for pokemon in "${pokemons[@]}"
+do
+    # Convert the name to lowercase using the portable 'tr' command
+    lowercase_name=$(echo "$pokemon" | tr '[:upper:]' '[:lower:]')
+
+    echo "Fetching data for $lowercase_name..."
+
+    # Use curl to fetch the data and save it.
+    if curl -fs "https://pokeapi.co/api/v2/pokemon/$lowercase_name" -o "$output_dir/$lowercase_name.json"; then
+        # If curl succeeds, print a success message
+        echo "Saved data to $output_dir/$lowercase_name.json ✅"
+    else
+        # If curl fails, print an error message
+        echo "Failed to fetch data for $lowercase_name ❌"
+    fi
+
+    # Pause for 1 second to avoid hitting API rate limits
+    sleep 1
+done
