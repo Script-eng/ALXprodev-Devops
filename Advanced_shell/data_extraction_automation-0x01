@@ -1,0 +1,2 @@
+#!/bin/bash
+jq -r '.name, .height, .weight, .types[0].type.name' data.json | awk '{name=$1; height=$2; weight=$3; type=$4; Name=toupper(substr(name,1,1)) substr(name,2); Type=toupper(substr(type,1,1)) substr(type,2); printf "%s is of type %s, weighs %dkg, and is %.1fm tall.\n", Name, Type, weight/10, height/10}'
